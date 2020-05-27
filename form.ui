@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>150</y>
+     <width>56</width>
+     <height>12</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>110</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Maximize</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>110</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton[objectName^=&quot;pushButton_2&quot;] {
+
+ line-height:40px;
+ border:1px #3399dd solid;;
+ background-color:#66aaff;
+ text-align:center;
+ color:#333;
+}
+
+QPushButton[objectName^=&quot;pushButton_2&quot;]:disabled{
+
+
+}
+
+QPushButton[objectName^=&quot;pushButton_2&quot;]:hover{
+
+}
+
+QPushButton[objectName^=&quot;pushButton_2&quot;]:pressed{
+color:#fff;
+
+}</string>
+   </property>
+   <property name="text">
+    <string>Hide</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_3">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>110</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton[objectName^=&quot;pushButton_3&quot;] {
+
+ line-height:40px;
+ border:1px #3399dd solid;;
+ background-color: red;
+ text-align:center;
+ color:#333;
+}
+
+QPushButton[objectName^=&quot;pushButton_3&quot;]:disabled{
+
+
+}
+
+QPushButton[objectName^=&quot;pushButton_3&quot;]:hover{
+
+}
+
+QPushButton[objectName^=&quot;pushButton_3&quot;]:pressed{
+color:#fff;
+
+}</string>
+   </property>
+   <property name="text">
+    <string>Show</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>240</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">
+QCheckBox::checked {
+    border: 3px solid #5A5A5A;
+    background: yellow;
+}</string>
+   </property>
+   <property name="text">
+    <string>CheckBox</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -8,6 +8,10 @@
 #include <QCommandLineParser>
 #include <QCommandLineOption>
 
+
+#include <QNetworkAccessManager>
+#include <QWidget>
+
 // Main 소스코드에서 관리할 UI(여기서는 Widget을 사용하였음)들을 Pointer로 전달하면 MainWindow클래스에는 관리할 윈도우(Widget)을 자유롭게 만질수 있음
 // 단, 주의사항은 Main에서 모두 다 생성을 해야함.
 // Main이 아닌 곳에서 인스턴스를 생성하면 제대로 동작하지 않음.
@@ -36,6 +40,12 @@ int main(int argc, char *argv[])
     w.show();
     //f.show();
     security.show();
+
+    QNetworkAccessManager nam;
+    QNetworkRequest req(QUrl("https://www.google.com"));
+    QNetworkReply *reply = nam.get(req);
+    QEventLoop loop;
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 
     QCommandLineParser parser;
     parser.setApplicationDescription("QtWebSockets example: echoclient");

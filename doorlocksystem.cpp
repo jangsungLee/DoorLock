@@ -5,6 +5,7 @@
 #include <QtCore/QDebug>
 #include <QFile>
 
+
 DoorLockSystem::DoorLockSystem(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::DoorLockSystem)
@@ -17,6 +18,9 @@ DoorLockSystem::DoorLockSystem(QWidget *_windows[]) :
   ui(new Ui::DoorLockSystem)
 {
     ui->setupUi(this);
+
+
+
 
     //setWindowState(Qt::WindowFullScreen);
     m_pTimer = new QTimer();

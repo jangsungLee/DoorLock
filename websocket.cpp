@@ -1,6 +1,10 @@
 #include "websocket.h"
 #include <QtCore/QDebug>
 
+#include <QMessageBox>
+
+#include <QProcess>
+
 QT_USE_NAMESPACE
 
 WebSocket::WebSocket(const QUrl &url, bool debug, QObject *parent) :
@@ -14,6 +18,7 @@ WebSocket::WebSocket(const QUrl &url, bool debug, QObject *parent) :
     connect(&m_webSocket, &QWebSocket::disconnected, this, &WebSocket::closed);
     m_webSocket.open(QUrl(url));
     m_url = url;
+
 }
 
 void WebSocket::onConnected()
@@ -46,6 +51,30 @@ void WebSocket::onBinaryMessageReceived(QByteArray message)
 void WebSocket::closed()
 {
     qDebug() << "Connection is closed, Retry Connection.";
-    m_webSocket.open(QUrl(m_url));
 
+    QMessageBox msgBox;
+    msgBox.setText("Network is invalid, Check your Hardware Network");
+    msgBox.setStandardButtons(QMessageBox::Ok | QMessageBox::Retry | QMessageBox::Reset);
+    int ret = msgBox.exec();
+    switch (ret) {
+    case QMessageBox::Reset:
+       /* QStringList arguments;
+        arguments<< "shutdown" << "-r" << "now";
+        QProcess::execute(arguments);
+
+
+        QString program = "shutdown";
+        QStringList arguments;
+        arguments << " -r" << " now";*/
+
+        QProcess::execute("shutdown -r now");
+        break;
+    case QMessageBox::Retry:
+        m_webSocket.open(QUrl(m_url));
+        break;
+    }
+}
+void WebSocket::Open()
+{
+    m_webSocket.open(QUrl(m_url));
 }

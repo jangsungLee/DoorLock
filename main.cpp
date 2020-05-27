@@ -2,15 +2,12 @@
 #include "form.h"
 #include "doorlocksystem.h"
 
+#include "websocketserver.h"
 
 #include <QDebug>
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QCommandLineOption>
-
-
-#include <QNetworkAccessManager>
-#include <QWidget>
 
 // Main 소스코드에서 관리할 UI(여기서는 Widget을 사용하였음)들을 Pointer로 전달하면 MainWindow클래스에는 관리할 윈도우(Widget)을 자유롭게 만질수 있음
 // 단, 주의사항은 Main에서 모두 다 생성을 해야함.
@@ -18,7 +15,7 @@
 
 // Socket *.pro => QT Modules += WebSocket NetWork
 
-
+#include <QProcess>
 
 #include "websocket.h"
 
@@ -29,25 +26,21 @@ void ErrorHandling(const char* message);
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Form f;
-    MainWindow w(nullptr, &f); // MainWindow에서 Form(f)를 접근(제어)하기 위해 포인터 전달.
-    QWidget *windows[]={&w, &f};
+    QWidget *windows[3];
+    Form f(windows);
+    MainWindow w(windows); // MainWindow에서 Form(f)를 접근(제어)하기 위해 포인터 전달.
     DoorLockSystem security(windows);
+    windows[0]=&security;
+    windows[1]=&w;
+    windows[2]=&f;
 
-    f.addMainWindow(&w);// Form(f)에서 MainWindow를 접근(제어)하기 위해 포인터 전달.
 
 
     w.show();
-    //f.show();
+    f.show();
     security.show();
 
-    QNetworkAccessManager nam;
-    QNetworkRequest req(QUrl("https://www.google.com"));
-    QNetworkReply *reply = nam.get(req);
-    QEventLoop loop;
-    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-
-    QCommandLineParser parser;
+   /* QCommandLineParser parser;
     parser.setApplicationDescription("QtWebSockets example: echoclient");
     parser.addHelpOption();
 
@@ -58,8 +51,16 @@ int main(int argc, char *argv[])
     bool debug = parser.isSet(dbgOption);
 
     WebSocket client(QUrl(QStringLiteral("ws://220.69.244.118:9000")), debug);
-    //QObject::connect(&client, &WebSocket::closed, &a, &QCoreApplication::quit);
-    w.websocket = &client;
+
+    w.websocket = &client;*/
+
+    bool debug = true;
+    int port = 1234;
+
+    WebSocketServer *server = new WebSocketServer(port, debug);
+    QObject::connect(server, &WebSocketServer::closed, &a, &QCoreApplication::quit);
+
+
 
     return a.exec();
 }

@@ -1,22 +1,20 @@
 #ifndef WORKER_H
 #define WORKER_H
 
+#include <QThread>
 
-#include <QObject>
-
-class Worker : public QObject
+class Worker : public QThread
 {
     Q_OBJECT
 public:
-    explicit Worker(QObject *parent = nullptr);
-    virtual ~Worker();
+    Worker(void (*_fp)() = nullptr);
+    ~Worker() override;
 
-public slots:
-    void doWork(const QString &);
+protected:
+    void run() override;
 
-signals:
-    void start(const QString &);
-    void resultReady(const QString &result);
+private:
+    void (*fp)();
 
 };
 

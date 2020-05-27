@@ -4,6 +4,8 @@
 #include <QtCore/QObject>
 #include <QtWebSockets/QWebSocket>
 
+#include <QWidget>
+
 // Source URL : https://stuff.mit.edu/afs/athena/software/texmaker_v5.0.2/qt57/doc/qtwebsockets/qtwebsockets-echoclient-example.html
 
 class WebSocket : public QObject
@@ -23,7 +25,9 @@ private Q_SLOTS:
     void onBinaryMessageReceived(QByteArray message);
 private:
     QUrl m_url;
+    QWidget **windows;
     bool m_debug;
+    void Open();
 };
 
 

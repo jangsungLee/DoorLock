@@ -2,12 +2,11 @@
 #include "ui_mainwindow.h"
 
 
-MainWindow::MainWindow(QWidget *parent, QWidget *_another) :
-    QMainWindow(parent),
+MainWindow::MainWindow(QWidget *_windows[3]) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    another = _another;
+    windows = _windows;
     //_another->setWindowState(Qt::WindowFullScreen);
 }
 
@@ -18,7 +17,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    another->setWindowState(Qt::WindowFullScreen);
+    windows[2]->setWindowState(Qt::WindowFullScreen); // set form WindowFullScreen
 }
 
 void MainWindow::on_pushButton_2_clicked()

@@ -15,7 +15,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr, QWidget *_another = nullptr);
+    explicit MainWindow(QWidget *_windows[3] = nullptr);
     ~MainWindow();
 
     WebSocket *websocket;
@@ -29,7 +29,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QWidget *another;
+    QWidget **windows;
 };
 
 #endif // MAINWINDOW_H

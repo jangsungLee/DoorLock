@@ -1,11 +1,11 @@
 #include "form.h"
 #include "ui_form.h"
 
-Form::Form(QWidget *parent) :
-    QWidget(parent),
+Form::Form(QWidget *_windows[3]) :
     ui(new Ui::Form)
 {
     ui->setupUi(this);
+    windows = _windows;
 }
 
 Form::~Form()
@@ -13,10 +13,6 @@ Form::~Form()
     delete ui;
 }
 
-void Form::addMainWindow(QMainWindow *target)
-{
-    MainWindow = target;
-}
 
 void Form::on_pushButton_clicked()
 {
@@ -25,11 +21,11 @@ void Form::on_pushButton_clicked()
 
 void Form::on_pushButton_2_clicked()
 {
-    MainWindow->hide();
+    windows[1]->hide(); // hide main window
 }
 
 void Form::on_pushButton_3_clicked()
 {
-    MainWindow->show();
+    windows[1]->show(); // show main window
     //MainWindow->raise(); // bring to top/front.
 }

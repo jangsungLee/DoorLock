@@ -13,10 +13,9 @@ class Form : public QWidget
     Q_OBJECT
 
 public:
-    explicit Form(QWidget *parent = nullptr);
+    explicit Form(QWidget *_windows[3] = nullptr);
     ~Form();
 
-    void addMainWindow(QMainWindow *target);
 
 private slots:
     void on_pushButton_clicked();
@@ -28,7 +27,9 @@ private slots:
 private:
     Ui::Form *ui;
 
-    QMainWindow *MainWindow = nullptr;
+    QWidget **windows;
+
+    bool isOn = false;
 };
 
 #endif // FORM_H

@@ -13,10 +13,10 @@ class DoorLockSystem : public QWidget
     Q_OBJECT
 
 public:
-    explicit DoorLockSystem(QWidget *parent = nullptr);
-    explicit DoorLockSystem(QWidget **_windows = nullptr);
+    explicit DoorLockSystem(QWidget *_windows[3] = nullptr);
     ~DoorLockSystem();
 
+    Ui::DoorLockSystem *ui;
 private slots:
     void on_pushButton_19_clicked();
 
@@ -46,7 +46,6 @@ private slots:
 
 private:
     QWidget **windows;
-    Ui::DoorLockSystem *ui;
     const char encrypted_character = '*';
     const int display_count = 10, resetTime = 5000/*5s*/;
     int number_index = 0;

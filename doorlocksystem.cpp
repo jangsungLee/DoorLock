@@ -5,24 +5,15 @@
 #include <QtCore/QDebug>
 #include <QFile>
 
-
-DoorLockSystem::DoorLockSystem(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::DoorLockSystem)
-{
-
-}
-
 DoorLockSystem::DoorLockSystem(QWidget *_windows[]) :
   windows(_windows),
   ui(new Ui::DoorLockSystem)
 {
     ui->setupUi(this);
 
+    setWindowState(Qt::WindowFullScreen);
+    setCursor(Qt::BlankCursor);
 
-
-
-    //setWindowState(Qt::WindowFullScreen);
     m_pTimer = new QTimer();
     connect(m_pTimer, SIGNAL(timeout()), this, SLOT(OnTimerCallbackFunc()));
 
@@ -59,54 +50,6 @@ DoorLockSystem::DoorLockSystem(QWidget *_windows[]) :
             file.close();
         }
     }
-
-
-
-
-    /*
-    QMovie *movie = new QMovie(":/new/prefix1/a.gif");
-    movie->setScaledSize(ui->label_2->size());
-    ui->label_2->setMovie(movie);
-    movie->start();
-    */
-    /*
-    QMovie *movie = new QMovie(":/new/prefix1/b.gif");
-
-
-    connect(movie, &QMovie::frameChanged, [=](int frameNumber){ // just play at once.
-        if(frameNumber == movie->frameCount()-1){
-            movie->stop();
-            movie->deleteLater();
-        }
-    });
-
-    movie->setScaledSize(ui->label_2->size());
-    ui->label_2->setMovie(movie);
-
-    movie->start();movie->setBackgroundColor(QColor(1,255,0));
-    */
-    /*
-    QMovie *movie = new QMovie(":/new/prefix1/c.gif");
-
-
-    connect(movie, &QMovie::frameChanged, [=](int frameNumber){ // just play at once.
-        if(frameNumber == movie->frameCount()-1){
-            movie->stop();
-            movie->deleteLater();
-
-            QMovie *movie = new QMovie(":/new/prefix1/a.gif");
-            movie->setScaledSize(ui->label_2->size());
-            ui->label_2->setMovie(movie);
-            movie->start();
-        }
-    });
-
-    movie->setScaledSize(ui->label_2->size());
-    ui->label_2->setMovie(movie);
-    movie->start();
-    */
-
-
 
 
 
@@ -354,7 +297,8 @@ void DoorLockSystem::on_pushButton_19_clicked() // button '*'
         {
             this->Clear();
 
-            windows[0]->raise(); // window 1
+            windows[1]->raise(); // window 1
+            qDebug() << "A";
         }
         else
             m_pTimer->start(resetTime);

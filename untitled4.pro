@@ -21,14 +21,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     websocket.cpp \
-    worker.cpp
+    websocketserver.cpp
 
 HEADERS += \
     doorlocksystem.h \
     form.h \
     mainwindow.h \
     websocket.h \
-    worker.h
+    websocketserver.h
 
 FORMS += \
     doorlocksystem.ui \
@@ -48,5 +48,7 @@ DISTFILES +=
 RESOURCES += \
     Resource.qrc
 
+#LIBS += -lpigpio  -pthread -lrt
 
-
+#INCLUDEPATH += /usr/local/include
+#DEPENDPATH += /usr/local/include

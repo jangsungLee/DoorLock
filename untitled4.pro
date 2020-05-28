@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    controlpanel.cpp \
     doorlocksystem.cpp \
     form.cpp \
     main.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
     websocketserver.cpp
 
 HEADERS += \
+    controlpanel.h \
     doorlocksystem.h \
     form.h \
     mainwindow.h \
@@ -31,6 +33,7 @@ HEADERS += \
     websocketserver.h
 
 FORMS += \
+    controlpanel.ui \
     doorlocksystem.ui \
     form.ui \
     mainwindow.ui
@@ -52,3 +55,10 @@ RESOURCES += \
 
 #INCLUDEPATH += /usr/local/include
 #DEPENDPATH += /usr/local/include
+linux {
+LIBS += -lpigpio  -pthread -lrt
+
+
+INCLUDEPATH += /usr/local/include
+DEPENDPATH += /usr/local/include
+}
